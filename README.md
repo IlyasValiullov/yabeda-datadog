@@ -31,26 +31,33 @@ Or install it yourself as:
       self.datadog_app_key = ENV['datadog_app_key']
       self.host = 'production' # name of application
       ...
+      # example metrics
+      group :poll do
+        counter   :count, comment: "Total number of bells being rang"
+        gauge     :whistles_active,  comment: "Number of whistles ready to whistle"
+        
+        histogram :whistle_runtime do
+          comment "How long whistles are being active"
+          unit :seconds
+          buckets ''
+        end
+      end
     end
     ```
 
 3. All metrics registered in Yabeda will be sent to Datadog automatically.
 
-4. On Datadog dashboard add new widget and customize metric output.
-![Datadog dashboard widget](https://user-images.githubusercontent.com/30317561/50737637-f0af2c00-11dc-11e9-8910-97134cc0a77a.png)
-
 ```ruby
-    Yabeda.configure do
-      group :poll do
-        
-      end
-      ...
-    end
-    ...
-    
-    Yabeda.poll.whistles_active.set({tags: 12}, 25)
+      
+    Yabeda.poll.whistles_active.set({type: 'common'}, 25)
+    Yabeda.poll.whistles_active.set({type: 'specific'}, 80)
        
 ```
+
+4. Go on Datadog dashboard, add new widget and customize metric output.
+
+![Datadog dashboard widget](https://user-images.githubusercontent.com/30317561/50737871-a3cc5500-11de-11e9-9108-a6ecafa1f1b4.png)
+
 You can filter metrics by host, device(group) and tags.
 More detailed graph customization you could find [here](https://docs.datadoghq.com/graphing/).
 
