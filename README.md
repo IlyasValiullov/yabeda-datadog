@@ -1,8 +1,7 @@
 # Yabeda::Datadog
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/yabeda/datadog`. To experiment with that code, run `bin/console` for an interactive prompt.
+Adapter for easy exporting collected custom metrics from your application to the [Datadog](https://www.datadoghq.com/).
 
-TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
@@ -22,7 +21,37 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+1. Go to [API integration page](https://app.datadoghq.com/account/settings#api) and create API and APP keys.
+
+2. Set keys in configure initializer
+
+    ```ruby
+    Yabeda.configure do
+      self.datadog_api_key = ENV['datadog_api_key']
+      self.datadog_app_key = ENV['datadog_app_key']
+      self.host = 'production' # name of application
+      ...
+    end
+    ```
+
+3. All metrics registered in Yabeda will be sent to Datadog automatically.
+
+4. On Datadog dashboard add new widget and customize metric output.
+
+```ruby
+    Yabeda.configure do
+      group :poll do
+        
+      end
+      ...
+    end
+    ...
+    
+    Yabeda.poll.whistles_active.set({tags: 12}, 25)
+        
+    ```
+You can filter metrics by host, device(group) and tags.
+More detailed graph customization you could find [here](https://docs.datadoghq.com/graphing/).
 
 ## Development
 
