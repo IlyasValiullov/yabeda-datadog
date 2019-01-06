@@ -16,7 +16,7 @@ module Yabeda
       end
 
       def register_counter!(metric)
-        # registry.comment("Initialize new counter #{metric}")
+        # Do nothing. Datadog don't need to register metrics
       end
 
       def perform_counter_increment!(metric, tags, _by)
@@ -31,7 +31,7 @@ module Yabeda
       end
 
       def register_gauge!(metric)
-        # registry.comment("Initialize new gauge #{metric}")
+        # Do nothing. Datadog don't need to register metrics
       end
 
       def perform_gauge_set!(metric, tags, value)
@@ -46,7 +46,7 @@ module Yabeda
       end
 
       def register_histogram!(metric)
-        # registry.comment("Initialize new histogram #{metric}")
+        # Do nothing. Datadog don't need to register metrics
       end
 
       def perform_histogram_measure!(metric, tags, value)
