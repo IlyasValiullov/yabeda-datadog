@@ -37,6 +37,7 @@ Or install it yourself as:
 3. All metrics registered in Yabeda will be sent to Datadog automatically.
 
 4. On Datadog dashboard add new widget and customize metric output.
+![Datadog dashboard widget](https://user-images.githubusercontent.com/30317561/50737637-f0af2c00-11dc-11e9-8910-97134cc0a77a.png)
 
 ```ruby
     Yabeda.configure do
@@ -48,8 +49,8 @@ Or install it yourself as:
     ...
     
     Yabeda.poll.whistles_active.set({tags: 12}, 25)
-        
-    ```
+       
+```
 You can filter metrics by host, device(group) and tags.
 More detailed graph customization you could find [here](https://docs.datadoghq.com/graphing/).
 
